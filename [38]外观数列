@@ -1,0 +1,26 @@
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public String countAndSay(int n) {
+        if (n == 1) {
+            return "1";
+        }
+        return count(countAndSay(n - 1));
+    }
+
+    private String count(String s) {
+        int n = s.length();
+        int left = 0, right = 0;
+        StringBuilder sb = new StringBuilder();
+        while (right < n) {
+            while (right < n && s.charAt(right) == s.charAt(left)) {
+                right++;
+            }
+            int num = right - left;
+            sb.append(num);
+            sb.append(s.charAt(left));
+            left = right;
+        }
+        return sb.toString();
+    }
+}
+//leetcode submit region end(Prohibit modification and deletion)
